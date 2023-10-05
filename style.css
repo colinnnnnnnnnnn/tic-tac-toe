@@ -1,0 +1,20 @@
+html,
+body {
+    margin: 0;
+}
+
+.board-area {
+    display: flex;
+    justify-content: center;
+}
+
+.board {
+    display: grid;
+    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+    border: 0.2rem solid black;
+}
+
+.cell {
+    border: 0.2rem solid black;
+    padding: 5rem;
+}
