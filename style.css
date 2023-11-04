@@ -10,8 +10,12 @@ body {
 
 .board {
     display: grid;
-    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
+    grid-template: 1fr 1fr 1fr / 1fr;
     border: 0.2rem solid black;
+}
+
+.row {
+    display: flex;
 }
 
 .cell {
