@@ -1,9 +1,23 @@
 const gameBoard = (function () {
     let turn = 'x';
+    let winner = '';
+
     let board = [
-        [0, 0, 0],
-        [0, 0, 0],
-        [0, 0, 0]
+        0, 0, 0,
+        0, 0, 0,
+        0, 0, 0
+    ]
+
+    let xboard = [
+        0, 0, 0,
+        0, 0, 0,
+        0, 0, 0
+    ];
+
+    let oboard = [
+        0, 0, 0,
+        0, 0, 0,
+        0, 0, 0
     ];
 
     let displayedBoard = document.querySelector('.board');
@@ -16,14 +30,60 @@ const gameBoard = (function () {
         cells.push(row.children[2]);
     }
 
-    console.log(rows);
-    console.log(cells);
-
-
     const playTurn = (cell) => {
-        cell.textContent = turn;
-        let temp = turn === 'x' ? 'o' : 'x';
-        turn = temp;
+        let index = cells.indexOf(cell);
+        
+        if (board[index] === 0) {
+            cell.textContent = turn;
+            board[index] = 1;
+            
+            if (turn === 'x') {
+                xboard[index] = 1;
+            }
+
+            else {
+                oboard[index] = 1;
+            }
+
+            checkWin(turn);
+
+            let temp = turn === 'x' ? 'o' : 'x';
+            turn = temp;
+        }
+    }
+
+    const checkWin = (turn) => {
+        if (turn === 'x') {
+            if (
+                xboard[0] + xboard[1] + xboard[2] == 3 ||
+                xboard[3] + xboard[4] + xboard[5] == 3 ||
+                xboard[6] + xboard[7] + xboard[8] == 3 ||
+                xboard[0] + xboard[3] + xboard[6] == 3 ||
+                xboard[1] + xboard[4] + xboard[7] == 3 ||
+                xboard[2] + xboard[5] + xboard[8] == 3 ||
+                xboard[0] + xboard[4] + xboard[8] == 3 ||
+                xboard[2] + xboard[4] + xboard[6] == 3
+            ) {
+                winner = 'x';
+                console.log('X won!')
+            }
+        }
+
+        if (turn === 'o') {
+            if (
+                oboard[0] + oboard[1] + oboard[2] == 3 ||
+                oboard[3] + oboard[4] + oboard[5] == 3 ||
+                oboard[6] + oboard[7] + oboard[8] == 3 ||
+                oboard[0] + oboard[3] + oboard[6] == 3 ||
+                oboard[1] + oboard[4] + oboard[7] == 3 ||
+                oboard[2] + oboard[5] + oboard[8] == 3 ||
+                oboard[0] + oboard[4] + oboard[8] == 3 ||
+                oboard[2] + oboard[4] + oboard[6] == 3
+            ) {
+                winner = 'o';
+                console.log('O won!')
+            }
+        }
     }
 
     cells.forEach(cell => {
