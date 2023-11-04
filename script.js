@@ -45,14 +45,19 @@ const gameBoard = (function () {
                 oboard[index] = 1;
             }
 
-            checkWin(turn);
+            checkStatus(turn);
 
             let temp = turn === 'x' ? 'o' : 'x';
             turn = temp;
         }
     }
 
-    const checkWin = (turn) => {
+    const checkStatus = (turn) => {
+        let tieCalc = 0;
+        board.forEach(e => {
+            tieCalc += e;
+        });
+
         if (turn === 'x') {
             if (
                 xboard[0] + xboard[1] + xboard[2] == 3 ||
@@ -66,6 +71,7 @@ const gameBoard = (function () {
             ) {
                 winner = 'x';
                 console.log('X won!')
+                return true;
             }
         }
 
@@ -82,8 +88,17 @@ const gameBoard = (function () {
             ) {
                 winner = 'o';
                 console.log('O won!')
+                return true;
             }
         }
+
+        if (winner === '' && tieCalc == 9) {
+            winner = 'none';
+            console.log('Tie!');
+            return true;
+        }
+
+        return false;
     }
 
     cells.forEach(cell => {
