@@ -107,3 +107,11 @@ const gameBoard = (function () {
         });
     });
 })();
+
+
+const displayController = (function () {
+    const startButton = document.getElementById('start');
+    startButton.addEventListener('click', () => {
+
+    });
+})();
