@@ -1,6 +1,7 @@
+let turn = 'x';
+let winner = '';
+
 const gameBoard = (function () {
-    let turn = 'x';
-    let winner = '';
 
     let board = [
         0, 0, 0,
@@ -110,8 +111,31 @@ const gameBoard = (function () {
 
 
 const displayController = (function () {
-    const startButton = document.getElementById('start');
-    startButton.addEventListener('click', () => {
+    const form = document.querySelector('.form');
+    const gameArea = document.querySelector('.game-area');
+    const displayTurn = document.querySelector('.turn');
+    const xInput = document.getElementById('x');
+    const oInput = document.getElementById('o');
 
+    let xName = 'X';
+    let oName = 'O';
+
+    form.addEventListener('submit', (event) => {
+        xName = xInput.value;
+        oName = oInput.value;
+        form.style.display = 'none';
+        gameArea.style.display = 'flex';
+        displayTurn.textContent = `Turn: ${xName}`;
+        event.preventDefault();
+    });
+
+    gameArea.addEventListener('click', () => {
+        if (turn === 'x') {
+            displayTurn.textContent = `Turn: ${xName}`;
+        }
+
+        else {
+            displayTurn.textContent = `Turn: ${oName}`;
+        }
     });
 })();
