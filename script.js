@@ -71,7 +71,7 @@ const gameBoard = (function () {
                 xboard[2] + xboard[4] + xboard[6] == 3
             ) {
                 winner = 'x';
-                console.log('X won!')
+                console.log('X won!');
                 return true;
             }
         }
@@ -88,7 +88,7 @@ const gameBoard = (function () {
                 oboard[2] + oboard[4] + oboard[6] == 3
             ) {
                 winner = 'o';
-                console.log('O won!')
+                console.log('O won!');
                 return true;
             }
         }
@@ -113,7 +113,8 @@ const gameBoard = (function () {
 const displayController = (function () {
     const form = document.querySelector('.form');
     const gameArea = document.querySelector('.game-area');
-    const displayTurn = document.querySelector('.turn');
+    const turnDiv = document.querySelector('.turn');
+    const winnerDiv = document.querySelector('.winner');
     const xInput = document.getElementById('x');
     const oInput = document.getElementById('o');
 
@@ -121,21 +122,48 @@ const displayController = (function () {
     let oName = 'O';
 
     form.addEventListener('submit', (event) => {
-        xName = xInput.value;
-        oName = oInput.value;
+        if (xInput.value != '') {
+            xName = xInput.value;            
+        }
+
+        if (oInput.value != '') {
+            oName = oInput.value;
+        }
+
         form.style.display = 'none';
         gameArea.style.display = 'flex';
-        displayTurn.textContent = `Turn: ${xName}`;
+        turnDiv.textContent = `Turn: ${xName}`;
         event.preventDefault();
     });
 
     gameArea.addEventListener('click', () => {
+        displayTurn();
+        displayWinner();
+    });
+
+    const displayTurn = () => {
         if (turn === 'x') {
-            displayTurn.textContent = `Turn: ${xName}`;
+            turnDiv.textContent = `Turn: ${xName}`;
         }
 
         else {
-            displayTurn.textContent = `Turn: ${oName}`;
+            turnDiv.textContent = `Turn: ${oName}`;
         }
-    });
+    }
+
+    const displayWinner = () => {
+        if (winner != '') {
+            if (winner === 'none') {
+                winnerDiv.textContent = `It's a tie`;
+            }
+
+            if (winner === 'x') {
+                winnerDiv.textContent = `${xName} won!`;
+            }
+
+            if (winner === 'o') {
+                winnerDiv.textContent = `${oName} won!`;
+            }
+        }
+    }
 })();

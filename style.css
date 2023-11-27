@@ -29,13 +29,16 @@ section:last-child {
     justify-content: center;
 }
 
-
-
 .game-area {
     display: none;
     height: 100%;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.turn {
+    font-size: 5rem;
 }
 
 .board {
