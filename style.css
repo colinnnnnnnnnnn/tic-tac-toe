@@ -37,7 +37,7 @@ section:last-child {
     align-items: center;
 }
 
-.turn {
+.header > div {
     font-size: 5rem;
 }
 

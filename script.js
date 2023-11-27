@@ -153,6 +153,8 @@ const displayController = (function () {
 
     const displayWinner = () => {
         if (winner != '') {
+            turnDiv.textContent = '';
+
             if (winner === 'none') {
                 winnerDiv.textContent = `It's a tie`;
             }
