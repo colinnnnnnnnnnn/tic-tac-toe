@@ -120,6 +120,7 @@ const displayController = (function () {
     const winnerDiv = document.querySelector('.winner');
     const xInput = document.getElementById('x');
     const oInput = document.getElementById('o');
+    const restartButt = document.getElementById('restart');
 
     let xName = 'X';
     let oName = 'O';
@@ -142,6 +143,10 @@ const displayController = (function () {
     gameArea.addEventListener('click', () => {
         displayTurn();
         displayWinner();
+    });
+
+    restartButt.addEventListener('click', () => {
+        location.reload();
     });
 
     const displayTurn = () => {
