@@ -32,24 +32,27 @@ const gameBoard = (function () {
     }
 
     const playTurn = (cell) => {
-        let index = cells.indexOf(cell);
+        if (winner === '') {
+            let index = cells.indexOf(cell);
         
-        if (board[index] === 0) {
-            cell.textContent = turn;
-            board[index] = 1;
-            
-            if (turn === 'x') {
-                xboard[index] = 1;
+            if (board[index] === 0) {
+                cell.textContent = turn;
+                cell.style.padding = 'calc((var(--font-size) * 2) - (var(--font-size) * 3 / 4)) calc((var(--font-size) * 2) - (var(--font-size) / 4))';
+                board[index] = 1;
+                
+                if (turn === 'x') {
+                    xboard[index] = 1;
+                }
+
+                else {
+                    oboard[index] = 1;
+                }
+
+                checkStatus(turn);
+
+                let temp = turn === 'x' ? 'o' : 'x';
+                turn = temp;
             }
-
-            else {
-                oboard[index] = 1;
-            }
-
-            checkStatus(turn);
-
-            let temp = turn === 'x' ? 'o' : 'x';
-            turn = temp;
         }
     }
 

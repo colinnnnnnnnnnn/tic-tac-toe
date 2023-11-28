@@ -1,7 +1,12 @@
+:root {
+    --font-size: 1.75rem;
+}
+
 html,
 body {
     margin: 0;
     height: 100%;
+    font-size: var(--font-size);
 }
 
 .form {
@@ -38,7 +43,7 @@ section:last-child {
 }
 
 .header > div {
-    font-size: 5rem;
+    font-size: calc(var(--font-size) * 2);
 }
 
 .board {
@@ -53,5 +58,5 @@ section:last-child {
 
 .cell {
     border: 0.2rem solid black;
-    padding: 5rem;
+    padding: calc(var(--font-size) * 2);
 }
